@@ -1,15 +1,20 @@
-import Counter from './Components/Counter';
+import { useState } from 'react';
 import './App.css';
-import WrapperComponent from './Components/WrapperComponent/WrapperComponent';
+import Child1Counter from './Components/SibToSibCommunication/Child1Counter';
+import Child2Operations from './Components/SibToSibCommunication/Child2Operations';
 
 function App() {
+
+  const [info, setInfo] = useState();
+
+  const Child1ToParentComs = (infofFromChild1) =>{
+    console.log("info received from child1", infofFromChild1);
+    setInfo(infofFromChild1);
+  }
   return (
     <div className="App">
-      <Counter />
-      {/* <UserList /> */}
-      <WrapperComponent>
-        this is rapper
-      </WrapperComponent>
+      <Child1Counter Child1ToParentComs={Child1ToParentComs} />
+      <Child2Operations info={info} />
     </div>
   );
 }

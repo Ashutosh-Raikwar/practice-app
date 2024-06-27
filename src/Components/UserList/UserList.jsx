@@ -119,7 +119,7 @@ export default function UserList() {
   return (
     <div>
         {users.map((user)=>{
-            return(<h2 key={user.id}>{user.name}</h2>)
+            return(<h2 key={user.id} style={{ border:"2px dotted red", margin:"5px", borderRadius:"5px"}}>{user.name}</h2>)
         })}
     </div>
   )
