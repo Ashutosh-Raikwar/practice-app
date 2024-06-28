@@ -29,7 +29,30 @@ function Forms() {
                 [key]: event.target.value,
             }
         })
+
+        ValidationForFields(event, key);
     };
+
+    function ValidationForFields(event, key){
+        const value = String(event.target.value);
+
+        if(key === "firstName"){
+            const nameregex = /^[A-Za-z]+$/;
+            const regexVal = value.match(nameregex);
+            if(!regexVal){
+                setErrorState((old) => {
+                    return{
+                    ...old,
+                    firstName: "Hey we should write good names what is this?",
+                    };
+                })
+            }
+        }
+        else if(key === "secondName"){}
+        else if(key === "email"){}
+        else if(key === "phone"){}
+        else{}
+    }
 
     return (
         <>
@@ -39,24 +62,28 @@ function Forms() {
                 <input type='text' id='firstName' onChange={(event) => {
                     onChangeHandler(event, "firstName")
                 }} />
+                <div style={{color:"red", fontWeight:"bold"}}>{errorState.firstName}</div>
 
                 <br />
                 <label htmlFor='secondName'>secondName*</label>
                 <input type='text' id='secondName' onChange={(event) => {
                     onChangeHandler(event, "secondName")
                 }} />
+                <div style={{color:"red", fontWeight:"bold"}}>{errorState.secondName}</div>
 
                 <br />
                 <label htmlFor='email'>email*</label>
                 <input type='email' id='email' onChange={(event) => {
                     onChangeHandler(event, "email")
                 }} />
+                <div style={{color:"red", fontWeight:"bold"}}>{errorState.email}</div>
 
                 <br />
                 <label htmlFor='phone'>phoneNo*</label>
                 <input type='number' id='phone' onChange={(event) => {
                     onChangeHandler(event, "phone")
                 }} />
+                <div style={{color:"red", fontWeight:"bold"}}>{errorState.phone}</div>
 
                 <br />
                 <label htmlFor='gender'>Gender</label>
